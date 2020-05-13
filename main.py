@@ -41,10 +41,41 @@ def calc_gain(data):
 	print(entropy_values[5, :])
 	print()
 	print(entropy_values[6, :])
+
 	# get index at max gain
 	max_index = np.where(entropy_values[6, :] == np.amax(entropy_values[6, :]))
+	decision = -1
+	
+	# check entropy at 1
+	if entropy_values[4, max_index] == 0:
+		if (entropy_values[0, max_index] / (entropy_values[0, max_index] + entropy_values[1, max_index])) == 1:
+			decision = 1
+		else:
+			decision = 0
 
-	return max_index
+	# check entropy at 0
+	if entropy_values[5, max_index] == 0:
+		if (entropy_values[2, max_index] / (entropy_values[2, max_index] + entropy_values[3, max_index])) == 1:
+			decision = 1
+		else:
+			decision = 0
+	return max_index, decision
 
 
 print(calc_gain(df))
+
+
+class Node(object):
+	def __init__(self):
+		self.value = None
+		self.decision = None
+		self.childs = None
+
+
+def build_tree(data):
+	index = calc_gain(data)
+
+
+# pd.script()
+#count min max std ==> btl3 el valuse de
+#print(df.describe())
