@@ -29,6 +29,7 @@ label = {'rating': output}
 output_df = pd.DataFrame(label)
 output_df.to_csv('result.csv', index=False)
 print('Predictions saved to (result.csv)')
+print()
 
 # Predicting the result of a user entered case
 while True:
@@ -36,12 +37,13 @@ while True:
 	choice = input()
 	if choice == 'N' or choice == 'n':
 		break
-	else:
+	elif choice == 'Y' or choice == 'y':
 		print('Enter new case:')
+		inputs = input().split()
 		case = {}
 		for i in range(0, 25):
 			col_name = train_df.columns[i]
-			case[col_name] = int(input())
+			case[col_name] = int(inputs[i])
 		case = pd.Series(case)
 		print('Prediction: ', root.traverse(case))
 		print()
