@@ -8,9 +8,9 @@ def get_decision(data):
 	# calc total entropy
 	pt = len(data.loc[data['rating'] == 'Positive'].index)			# total number of positive rating
 	nt = len(data.loc[data['rating'] == 'Negative'].index)			# total number of negative rating
-	if pt == 0 or nt == 0:											# all cases have only positive or negative rating
+	if pt == 0 or nt == 0:							# all cases have only positive or negative rating
 		entropy_total = 0
-	else:															# all cases have both positive or negative rating
+	else:									# all cases have both positive or negative rating
 		entropy_total = -1 * (pt / (pt + nt) * math.log2(pt / (pt + nt)) + nt / (pt + nt) * math.log2(nt / (pt + nt)))
 
 	# calc entropy and gain of each word
